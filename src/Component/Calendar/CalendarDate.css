@@ -1,0 +1,11 @@
+.react-calendar__tile--active {
+    background-color: #d81159 !important;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #e6e6e6;
+    border-radius: 10px;
+}
