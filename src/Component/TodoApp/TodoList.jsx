@@ -40,7 +40,10 @@ const TodoList = () => {
         <div>
             {/* incompleted task */}
             <div className='mb-12 '>
-                <p className='text-2xl font-medium1 font-mono text-center lg:text-start'>Your tasks</p>
+                <div className='flex justify-between items-center'>
+                    <p className='text-2xl font-medium font-mono  text-center lg:text-start'>Your tasks: {inCompletedTasks.length}</p>
+                    <p className='text-2xl font-medium text-gray-700 font-mono text-center lg:text-start'>Total {tasks?.length}</p>
+                </div>
 
                 {inCompletedTasks.length === 0 && <p className='mt-4 text-center lg:text-start text-[#D81158]'>You completed all the tasks. No task yet!</p>}
 
@@ -53,7 +56,7 @@ const TodoList = () => {
 
             {/* completed task */}
             <div>
-                <p className='text-2xl font-medium1 font-mono text-center lg:text-start'>Completed tasks</p>
+                <p className='text-2xl font-medium font-mono text-center lg:text-start'>Completed tasks: {completedTasks.length}</p>
                 <div className="mt-4 space-y-3">
                     {completedTasks?.map((task) => (
                         <CompletedTasks key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
