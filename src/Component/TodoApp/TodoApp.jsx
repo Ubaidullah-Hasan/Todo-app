@@ -4,17 +4,14 @@ import TodoList from './TodoList';
 
 const TodoApp = () => {
     const initialTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const [tasks, setTasks] = useState(initialTasks);
     const [newTask, setNewTask] = useState('');
+    console.log(initialTasks)
 
     // add tasks and set localstorage
     const addTask = () => {
         if (newTask.trim() !== '') {
-            setTasks((prevTask) => {
-                const updtedTask = [...prevTask, { id: Date.now(), text: newTask, completed: false }];
-                localStorage.setItem('tasks', JSON.stringify(updtedTask));
-                return updtedTask;
-            })
+            const updtedTask = [...initialTasks, { id: Date.now(), text: newTask, completed: false }];
+            localStorage.setItem('tasks', JSON.stringify(updtedTask));
             setNewTask('');
         }
     };
