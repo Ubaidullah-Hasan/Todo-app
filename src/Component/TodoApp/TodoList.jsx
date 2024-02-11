@@ -21,6 +21,7 @@ const TodoList = () => {
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
             return updatedTasks;
         });
+        window.location.reload();
     };
 
 
