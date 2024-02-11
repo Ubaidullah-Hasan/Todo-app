@@ -10,49 +10,40 @@ const TodoList = () => {
     // console.log(tasks)
     const inCompletedTasks = tasks.filter(task => task?.completed === false);
     const completedTasks = tasks.filter(task => task?.completed === true);
-    console.log(completedTasks);
 
 
     // update task status
     const toggleTask = (taskId) => {
         setTasks((prevTasks) => {
             const updatedTasks = prevTasks.map((task) =>
-                task.id === taskId ? { ...task, completed: !task.completed } : task
+                task.id === taskId ? { ...task, completed: true } : task
             );
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-            console.log(updatedTasks);
             return updatedTasks;
         });
     };
 
-    // Add an event listener to listen for changes in local storage
-    useEffect(() => {
-        const handleStorageChange = (event) => {
-            console.log('hi');
-            if (event.key === 'tasks') {
-                const updatedTasks = JSON.parse(event.newValue);
-                setTasks(updatedTasks || []);
-            }
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
-    }, []);
-
 
     const deleteTask = (taskId) => {
-        setTasks(tasks.filter((task) => task.id !== taskId));
+        setTasks((prevTasks) => {
+            // Filter out the task to be deleted
+            const updatedTasks = prevTasks.filter((task) => task.id !== taskId);
+            // Update local storage with the new array of tasks
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+            return updatedTasks;
+        });
+        window.location.reload();
     };
+
 
     return (
         <div>
             {/* incompleted task */}
-            <div className='mb-12'>
-                <p className='text-2xl font-medium1 font-mono '>Your tasks</p>
+            <div className='mb-12 '>
+                <p className='text-2xl font-medium1 font-mono text-center lg:text-start'>Your tasks</p>
+
+                {inCompletedTasks.length === 0 && <p className='mt-4 text-center lg:text-start text-[#D81158]'>You completed all the tasks. No task yet!</p>}
+
                 <div className="mt-4 space-y-3">
                     {inCompletedTasks?.map((task) => (
                         <Task key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />
@@ -62,7 +53,7 @@ const TodoList = () => {
 
             {/* completed task */}
             <div>
-                <p className='text-2xl font-medium1 font-mono '>Completed tasks</p>
+                <p className='text-2xl font-medium1 font-mono text-center lg:text-start'>Completed tasks</p>
                 <div className="mt-4 space-y-3">
                     {completedTasks?.map((task) => (
                         <CompletedTasks key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />

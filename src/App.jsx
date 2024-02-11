@@ -12,10 +12,10 @@ function App() {
         <Header />
 
         {/* container */}
-        <div className='bg-gray-100 m-10 px-[50px] py-8 rounded-3xl h-screen '>
+        <div className='bg-gray-100 m-10 px-[50px] py-8 rounded-3xl min-h-screen'>
 
           {/* container layout start */}
-          <div className='flex gap-5'>
+          <div className='flex gap-10'>
             <div className=' w-full'>
               <MyCalendar />
               <TodoApp />

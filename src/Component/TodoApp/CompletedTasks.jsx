@@ -1,13 +1,17 @@
 import React from 'react';
+import { FaCheckCircle } from "react-icons/fa";
+import { MdDelete } from 'react-icons/md';
 
-const CompletedTasks = ({ task, onToggle, onDelete }) => {
+const CompletedTasks = ({ task, onDelete }) => {
     return (
-        <div className={`bg-white flex items-center justify-between p-4 rounded-lg ${task.completed ? 'line-through text-gray-500' : ''}`}>
+        <div className={`bg-[#bfd200]/10 border border-[#55a630] flex items-center justify-between p-4 rounded-lg `}>
             <div>
-                <input type="checkbox" checked={task.completed} onChange={() => onToggle(task.id)} />
-                <span className="ml-2">{task.text}</span>
+                <span className="text-[#2b9348]">{task.text}</span>
             </div>
-            <button onClick={() => onDelete(task.id)} className="text-red-500">Delete</button>
+            <div className='flex items-center gap-2'>
+                <button onClick={() => onDelete(task.id)} className=" px-2 py-1 text-xs text-[#D81158]"><MdDelete size={20} /></button>
+                <button className='text-[#2b9348]'><FaCheckCircle /></button>
+            </div>
         </div>
     );
 };
