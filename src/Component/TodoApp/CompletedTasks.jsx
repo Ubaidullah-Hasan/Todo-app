@@ -1,7 +1,6 @@
-// src/components/Task.js
 import React from 'react';
 
-const Task = ({ task, onToggle, onDelete }) => {
+const CompletedTasks = ({ task, onToggle, onDelete }) => {
     return (
         <div className={`bg-white flex items-center justify-between p-4 rounded-lg ${task.completed ? 'line-through text-gray-500' : ''}`}>
             <div>
@@ -13,4 +12,4 @@ const Task = ({ task, onToggle, onDelete }) => {
     );
 };
 
-export default Task;
+export default CompletedTasks;

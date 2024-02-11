@@ -4,17 +4,21 @@ import TodoList from './TodoList';
 
 const TodoApp = () => {
     const initialTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const [tasks, setTasks] = useState(initialTasks);
     const [newTask, setNewTask] = useState('');
-    console.log(initialTasks)
 
-    // add tasks and set localstorage
     const addTask = () => {
         if (newTask.trim() !== '') {
-            const updtedTask = [...initialTasks, { id: Date.now(), text: newTask, completed: false }];
-            localStorage.setItem('tasks', JSON.stringify(updtedTask));
+            setTasks((prevTask) => {
+                const updatedTask = [...prevTask, { id: Date.now(), text: newTask, completed: false }];
+                localStorage.setItem('tasks', JSON.stringify(updatedTask));
+                return updatedTask;
+            });
             setNewTask('');
+            window.location.reload();
         }
     };
+
 
     return (
         <div className="rounded-xl mt-8 p-4 bg-white shadow">
