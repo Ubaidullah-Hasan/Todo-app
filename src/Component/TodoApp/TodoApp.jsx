@@ -1,9 +1,10 @@
 // src/components/TodoApp.js
 import React, { useState } from 'react';
+import TodoList from './TodoList';
 
 const TodoApp = () => {
-    const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')));
-    console.log('task:', tasks);
+    const initialTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const [tasks, setTasks] = useState(initialTasks);
     const [newTask, setNewTask] = useState('');
 
     // add tasks and set localstorage
@@ -12,7 +13,6 @@ const TodoApp = () => {
             setTasks((prevTask) => {
                 const updtedTask = [...prevTask, { id: Date.now(), text: newTask, completed: false }];
                 localStorage.setItem('tasks', JSON.stringify(updtedTask));
-                console.log(updtedTask);
                 return updtedTask;
             })
             setNewTask('');
