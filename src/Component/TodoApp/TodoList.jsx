@@ -11,10 +11,27 @@ import { FaFaceSadCry } from "react-icons/fa6";
 const TodoList = () => {
     const initialTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const [tasks, setTasks] = useState(initialTasks);
-    // console.log(tasks)
-    const inCompletedTasks = tasks.filter(task => task?.completed === false);
-    const completedTasks = tasks.filter(task => task?.completed === true);
+    const [priorityFilter, setPriorityFilter] = useState('');
 
+    // filter by priority
+    const priorityOptions = Array.from(new Set(tasks.map(task => task.priority)));
+
+    const handlePriorityFilterChange = (event) => {
+        setPriorityFilter(event.target.value);
+    };
+    
+    const filteredTasks = tasks.filter(task => {
+        // Check if priorityFilter is empty or matches the task's priority
+        return !priorityFilter || task?.priority === priorityFilter;
+    });
+    console.log(filteredTasks)
+
+    const inCompletedTasks = filteredTasks.filter(task => task?.completed === false);
+    const completedTasks = filteredTasks.filter(task => task?.completed === true);
+    
+    
+
+    
 
     // update task status
     const toggleTask = (taskId) => {
@@ -47,6 +64,21 @@ const TodoList = () => {
             <div className='mb-14 '>
                 <div className='flex justify-between items-center'>
                     <p className='text-2xl font-medium font-mono  text-center lg:text-start'>Your tasks: {inCompletedTasks.length}</p>
+                    {/* filter */}
+                    <div>
+                        <select
+                            value={priorityFilter}
+                            onChange={handlePriorityFilterChange}
+                            className='p-2 border rounded-md capitalize'
+                        >
+                            <option value="">Filter by priority</option>
+                            {priorityOptions.map((priority) => (
+                                <option key={priority} value={priority}>{priority}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* task length */}
                     <p className='text-2xl font-medium text-gray-700 font-mono text-center lg:text-start'>Total {tasks?.length}</p>
                 </div>
 
