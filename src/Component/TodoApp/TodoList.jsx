@@ -102,8 +102,8 @@ const TodoList = () => {
 
                 {completedTasks.length === 0 &&
                     <div className='mt-8 text-center'>
-                        <FaFaceSadCry size={50} className='mx-auto mb-4 text-[#da2c38]' />
-                        <p className=' text-[#da2c38]'>Finish the job quickly!</p>
+                        <FaFaceSadCry size={50} className='mx-auto mb-4 text-[#da2c38] animate-bounce' />
+                        <p className=' text-[#da2c38]'>Finish the task quickly!</p>
                     </div>
                 }
 
