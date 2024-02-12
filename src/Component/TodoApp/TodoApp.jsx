@@ -6,7 +6,7 @@ const TodoApp = () => {
     const initialTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const [tasks, setTasks] = useState(initialTasks);
     const [newTask, setNewTask] = useState('');
-    const [priority, setPriority] = useState('normal');
+    const [priority, setPriority] = useState('');
 
     const addTask = () => {
         if (newTask.trim() !== '') {
@@ -28,7 +28,7 @@ const TodoApp = () => {
     return (
         <div className="rounded-xl mt-8 p-4 bg-white shadow">
             {/* <h1 className="text-2xl font-bold mb-4">Todo List</h1> */}
-            <div >
+            <form >
                 <div className="flex">
                     <input
                         type="text"
@@ -36,9 +36,10 @@ const TodoApp = () => {
                         onChange={(e) => setNewTask(e.target.value)}
                         placeholder="Add a new task..."
                         className="flex-grow p-2 border "
+                        required
                     />
 
-                    <button onClick={addTask} disabled={!newTask} className="ml-2 disabled:bg-[#d81159]/70 bg-[#d81159] text-white p-2 rounded px-8">
+                    <button type='submit' onClick={addTask} disabled={!(newTask && priority)} className="ml-2 disabled:bg-[#d81159]/70 bg-[#d81159] text-white p-2 rounded px-8">
                         Add
                     </button>
                 </div>
@@ -78,7 +79,7 @@ const TodoApp = () => {
                     <label htmlFor="high" className='cursor-pointer'>High</label>
                 </div>
 
-            </div>
+            </form>
         </div>
     );
 };
