@@ -11,8 +11,8 @@ const MyCalendar = () => {
     return (
         <div>
             <div className='mb-6 space-y-2'>
-                <p className='text-2xl font-medium1 font-mono text-[#d81159]'>{moment().format('dddd')}</p>
-                <p className='text-2xl font-medium font-mono'>{moment().format('D, MMMM YYYY')}</p>
+                <p className='md:text-2xl sm:text-xl text-lg font-medium1 font-mono text-[#d81159]'>{moment().format('dddd')}</p>
+                <p className='md:text-2xl sm:text-xl text-lg font-medium font-mono'>{moment().format('D, MMMM YYYY')}</p>
             </div>
             <Calendar
                 onChange={onChange}

@@ -19,7 +19,7 @@ const TodoList = () => {
     const handlePriorityFilterChange = (event) => {
         setPriorityFilter(event.target.value);
     };
-    
+
     const filteredTasks = tasks.filter(task => {
         // Check if priorityFilter is empty or matches the task's priority
         return !priorityFilter || task?.priority === priorityFilter;
@@ -28,10 +28,10 @@ const TodoList = () => {
 
     const inCompletedTasks = filteredTasks.filter(task => task?.completed === false);
     const completedTasks = filteredTasks.filter(task => task?.completed === true);
-    
-    
 
-    
+
+
+
 
     // update task status
     const toggleTask = (taskId) => {
@@ -61,15 +61,15 @@ const TodoList = () => {
     return (
         <div>
             {/* incompleted task */}
-            <div className='mb-14 '>
+            <div className='mb-14'>
                 <div className='flex justify-between items-center'>
-                    <p className='text-2xl font-medium font-mono  text-center lg:text-start'>Your tasks: {inCompletedTasks.length}</p>
+                    <p className='hidden sm:block lg:text-2xl md:text-xl font-medium font-mono  text-center lg:text-start'>Your tasks: {inCompletedTasks.length}</p>
                     {/* filter */}
-                    <div>
+                    <div className='bg-white p-2 border rounded-md '>
                         <select
                             value={priorityFilter}
                             onChange={handlePriorityFilterChange}
-                            className='p-2 border rounded-md capitalize'
+                            className='pr-2 capitalize'
                         >
                             <option value="">Filter by priority</option>
                             {priorityOptions.map((priority) => (
@@ -79,7 +79,7 @@ const TodoList = () => {
                     </div>
 
                     {/* task length */}
-                    <p className='text-2xl font-medium text-gray-700 font-mono text-center lg:text-start'>Total {tasks?.length}</p>
+                    <p className='lg:text-2xl md:text-xl font-medium text-gray-700 font-mono text-center lg:text-start'>Total: {tasks?.length}</p>
                 </div>
 
                 {inCompletedTasks.length === 0 &&
@@ -98,7 +98,7 @@ const TodoList = () => {
 
             {/* completed task */}
             <div>
-                <p className='text-2xl font-medium font-mono text-center lg:text-start'>Completed tasks: {completedTasks.length}</p>
+                <p className='lg:text-2xl md:text-xl font-medium font-mono text-center lg:text-start'>Completed tasks: {completedTasks.length}</p>
 
                 {completedTasks.length === 0 &&
                     <div className='mt-8 text-center'>

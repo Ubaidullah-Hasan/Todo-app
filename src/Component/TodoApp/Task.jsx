@@ -54,12 +54,12 @@ const Task = ({ task, onToggle, onDelete }) => {
     }, [priority]);
 
     return (
-        <div className={`bg-white flex items-end justify-between p-4 rounded-lg `}>
+        <div className={`bg-white flex flex-wrap gap-y-3 items-end justify-between p-4 rounded-lg `}>
             {/* modal open */}
             {
                 isEdit &&
                 <div className='fixed top-0 left-0 right-0 bottom-0 mx-auto my-auto bg-slate-900/80 flex items-center justify-center'>
-                    <div className='w-[80%] h-[40vh] bg-white rounded-xl mt-8 p-12 shadow'>
+                    <div className='md:w-[80%] w-[98%]  bg-white rounded-xl p-6 md:p-12 shadow'>
                         <div className="flex">
                             <input
                                 type="text"
@@ -69,40 +69,46 @@ const Task = ({ task, onToggle, onDelete }) => {
                             />
                         </div>
 
-                        <div className='flex gap-3 my-3'>
+                        <div className='flex flex-col md:flex-row gap-3 my-3'>
                             <p className='font-bold capitalize'>priority: </p>
-                            <input
-                                type="radio"
-                                id="normalvalue"
-                                name="priority"
-                                value="normal"
-                                checked={priority === 'normal'}
-                                onChange={handlePriorityChange}
-                                className='cursor-pointer'
-                            />
-                            <label htmlFor="normalvalue" className='cursor-pointer'>Normal</label><br />
+                            <div className='flex gap-2 items-center'>
+                                <input
+                                    type="radio"
+                                    id="normalvalue"
+                                    name="priority"
+                                    value="normal"
+                                    checked={priority === 'normal'}
+                                    onChange={handlePriorityChange}
+                                    className='cursor-pointer'
+                                />
+                                <label htmlFor="normalvalue" className='cursor-pointer'>Normal</label><br />
+                            </div>
 
-                            <input
-                                type="radio"
-                                id="mediumvalue"
-                                name="priority"
-                                value="medium"
-                                checked={priority === 'medium'}
-                                onChange={handlePriorityChange}
-                                className='cursor-pointer'
-                            />
-                            <label htmlFor="mediumvalue" className='cursor-pointer'>Medium</label><br />
+                            <div className='flex gap-2 items-center'>
+                                <input
+                                    type="radio"
+                                    id="mediumvalue"
+                                    name="priority"
+                                    value="medium"
+                                    checked={priority === 'medium'}
+                                    onChange={handlePriorityChange}
+                                    className='cursor-pointer'
+                                />
+                                <label htmlFor="mediumvalue" className='cursor-pointer'>Medium</label><br />
+                            </div>
 
-                            <input
-                                type="radio"
-                                id="highvalue"
-                                name="priority"
-                                value="high"
-                                checked={priority === 'high'}
-                                onChange={handlePriorityChange}
-                                className='cursor-pointer'
-                            />
-                            <label htmlFor="highvalue" className='cursor-pointer'>High</label>
+                            <div className='flex gap-2 items-center'>
+                                <input
+                                    type="radio"
+                                    id="highvalue"
+                                    name="priority"
+                                    value="high"
+                                    checked={priority === 'high'}
+                                    onChange={handlePriorityChange}
+                                    className='cursor-pointer'
+                                />
+                                <label htmlFor="highvalue" className='cursor-pointer'>High</label>
+                            </div>
                         </div>
 
                         <div className=' text-start'>
@@ -125,10 +131,11 @@ const Task = ({ task, onToggle, onDelete }) => {
                 <div className='flex gap-2 items-center'>
                     <button onClick={() => onToggle(task.id)} className="font-bold uppercase mt-2 bg-[#73a942]/10 hover:bg-[#73a942] border border-[#73a942] text-[#73a942] hover:text-white rounded-md px-2 py-1 text-xs">Complete</button>
                     <button onClick={() => handleEdit(task.id)} className="font-bold uppercase mt-2 bg-[#fbb02d]/10 hover:bg-[#fbb02d] border border-[#fbb02d] text-[#fbb02d] hover:text-white rounded-md px-2 py-1 text-xs">Edit</button>
-                    <p className="font-bold uppercase mt-2 bg-[#D81158] border text-white rounded-md px-2 py-1 text-xs">{task.priority}</p>
+                    <p className="hidden sm:block font-bold uppercase mt-2 bg-[#D81158] border text-white rounded-md px-2 py-1 text-xs">{task.priority}</p>
                 </div>
             </div>
-            <button onClick={() => onDelete(task.id)} className="bg-red-500 rounded-md px-2 py-1 text-xs text-white"><MdDelete size={22} /></button>
+            <button onClick={() => onDelete(task.id)} className="bg-red-500 rounded-md px-2 py-1 text-xs text-white flex items-center justify-center w-fit"><MdDelete size={22} /></button>
+            <p className=" sm:hidden font-bold uppercase mt-2 bg-[#D81158] border text-white rounded-md px-2 py-1 text-xs">{task.priority}</p>
         </div>
     );
 };

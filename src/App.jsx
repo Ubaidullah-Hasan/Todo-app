@@ -12,15 +12,15 @@ function App() {
         <Header />
 
         {/* container */}
-        <div className='bg-gray-100 m-10 px-[50px] py-8 rounded-3xl min-h-screen'>
+        <div className='bg-gray-100 md:m-10 m-3 md:px-[50px] px-4 md:py-8 py-6 md:rounded-3xl rounded-md '>
 
           {/* container layout start */}
-          <div className='flex gap-10'>
-            <div className=' w-full'>
+          <div className='flex flex-col xl:flex-row gap-x-10 gap-y-20'>
+            <div className='w-full'>
               <MyCalendar />
               <TodoApp />
             </div>
-            <div className=' w-full'>
+            <div className='w-full'>
               <TodoList />
             </div>
           </div>
